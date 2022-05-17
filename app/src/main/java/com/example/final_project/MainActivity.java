@@ -13,14 +13,11 @@ public class MainActivity extends AppCompatActivity {
 
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=a21olljo";
 
-    private List<Result> results;
+    private ArrayList<Result> results;
     private ResultAdapter resultAdapter;
     private RecyclerView recyclerView;
 
 //    private Gson gson;
-
-    public MainActivity() {
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
