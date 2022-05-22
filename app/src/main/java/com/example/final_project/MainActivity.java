@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         Log.d("Onposter", String.valueOf(json));
         Log.d("Onposter", String.valueOf(results));
         resultAdapter.setResults(results);
+
         resultAdapter.notifyDataSetChanged();
     }
 }

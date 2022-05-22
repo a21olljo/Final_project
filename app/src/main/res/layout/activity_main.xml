@@ -6,12 +6,115 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+        <TextView
+            android:id="@+id/position_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Position"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/time_header"
+            app:layout_constraintStart_toEndOf="@+id/name_header"
+            app:layout_constraintTop_toTopOf="parent"
+            android:paddingStart="10dp"/>
+
+        <TextView
+            android:id="@+id/name_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            app:layout_constraintBottom_toBottomOf="@+id/position_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/position_header"
+            app:layout_constraintTop_toTopOf="@+id/position_header"
+            android:paddingStart="20dp"/>
+
+        <TextView
+            android:id="@+id/club_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Club"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingStart="120dp" />
+
+        <TextView
+            android:id="@+id/time_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="40dp"
+            android:text="Time"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="500dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"/>
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="62dp" />
+
+    <Button
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="84dp"
+        android:layout_marginBottom="112dp"
+        android:text="name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/about" />
+
+    <Button
+        android:id="@+id/place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Place"
+        app:layout_constraintBottom_toBottomOf="@+id/name"
+        app:layout_constraintEnd_toStartOf="@+id/name"
+        app:layout_constraintHorizontal_bias="0.531"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/name"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="88dp"
+        android:text="about DB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <Button
+        android:id="@+id/club"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="club"
+        app:layout_constraintBottom_toBottomOf="@+id/about"
+        app:layout_constraintEnd_toStartOf="@+id/name"
+        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/about" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
