@@ -5,29 +5,39 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+@SuppressWarnings("FieldCanBeLocal")
+public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener {
 
+    RecyclerView recyclerView;
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=a21olljo";
-
-    private ArrayList<Result> results;
-    private ResultAdapter resultAdapter;
-    private RecyclerView recyclerView;
-
-//    private Gson gson;
+    private ArrayList<Result> results = new ArrayList<Result>();
+    ResultAdapter resultAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        new JsonTask(this).execute(JSON_URL);
+    }
 
-        recyclerView = findViewById(R.id.recycler_view);
-        resultAdapter = new ResultAdapter(results);
-        recyclerView.setAdapter(resultAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+    @Override
+    public void onPostExecute(String json) {
+        Gson gson = new Gson();
 
+        // Unmarshall JSON -> list of objects
+        Type type = new TypeToken<ArrayList<Result>>() {}.getType();
+        results = gson.fromJson(json, type);
+        resultAdapter.setResults(results);
+        Log.d("Onposter", String.valueOf(json));
+        resultAdapter.notifyDataSetChanged();
     }
 }

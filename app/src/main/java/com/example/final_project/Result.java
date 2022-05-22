@@ -1,10 +1,12 @@
 package com.example.final_project;
 
+import java.util.ArrayList;
+
 public class Result {
     private String ID, name, company;
     private int size, cost;
 
-    public Result(String id, String name, String company, int size, Integer cost) {
+    public Result(String id, String name, String company, int size, int cost) {
         this.ID = id;
         this.name = name;
         this.company = company;
