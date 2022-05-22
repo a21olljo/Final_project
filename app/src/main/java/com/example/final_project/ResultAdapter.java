@@ -1,5 +1,6 @@
 package com.example.final_project;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,14 +26,15 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
         return new ResultViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.result_item, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ResultAdapter.ResultViewHolder holder, int position) {
         Log.d("BinderViewer", "results.getString");
 
         holder.name.setText(results.get(position).getName());
         holder.club.setText(results.get(position).getCompany());
-        holder.position.setText(results.get(position).getSize());
-        holder.time.setText(results.get(position).getCost());
+        holder.position.setText(Integer.toString(results.get(position).getCost()));
+        holder.time.setText(Integer.toString(results.get(position).getSize()));
     }
 
     @Override

@@ -26,6 +26,12 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        recyclerView = findViewById(R.id.recycler_view);
+        resultAdapter = new ResultAdapter(results);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView.setAdapter(resultAdapter);
+
         new JsonTask(this).execute(JSON_URL);
     }
 
@@ -36,8 +42,9 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         // Unmarshall JSON -> list of objects
         Type type = new TypeToken<ArrayList<Result>>() {}.getType();
         results = gson.fromJson(json, type);
-        resultAdapter.setResults(results);
         Log.d("Onposter", String.valueOf(json));
+        Log.d("Onposter", String.valueOf(results));
+        resultAdapter.setResults(results);
         resultAdapter.notifyDataSetChanged();
     }
 }
