@@ -34,7 +34,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
         holder.name.setText(results.get(position).getName());
         holder.club.setText(results.get(position).getCompany());
         holder.position.setText(Integer.toString(results.get(position).getCost()));
-        holder.time.setText(Integer.toString(results.get(position).getSize()));
+        holder.time.setText(results.get(position).getSize());
+        Log.d("Temp", results.get(position).getSize());
     }
 
     @Override
