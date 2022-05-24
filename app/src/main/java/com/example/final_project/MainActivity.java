@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -29,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     private Button name;
     private Button place;
-    private Button about;
     private Button club;
 
     private Comparator<Result> comparePlace = new Comparator<Result>() {
@@ -72,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         place = findViewById(R.id.place_button);
         club = findViewById(R.id.club_button);
-        about = findViewById(R.id.about_button);
         name = findViewById(R.id.name_button);
         place.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,15 +98,11 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
                 resultAdapter.notifyDataSetChanged();
             }
         });
+    }
 
-        about.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-
+    public void new_activity(View v) {
+        Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
     }
 
     @Override
