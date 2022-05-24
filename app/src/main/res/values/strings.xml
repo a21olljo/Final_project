@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Final_Project</string>
+    <string name="position_header">Position</string>
+    <string name="name_header">Name</string>
+    <string name="club_header">Club</string>
+    <string name="time_header">Time</string>
+    <string name="about_button">about</string>
+    <string name="place_button">Place</string>
+    <string name="club_button">club</string>
+    <string name="name_button">name</string>
 </resources>
