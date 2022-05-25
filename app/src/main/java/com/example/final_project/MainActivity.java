@@ -4,13 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -19,12 +17,10 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener {
 
-    public static int sortThis;
     RecyclerView recyclerView;
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=a21olljo";
     private ArrayList<Result> results = new ArrayList<Result>();
@@ -34,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     private Button place;
     private Button club;
 
-    private Comparator<Result> comparePlace = new Comparator<Result>() {
+    private final Comparator<Result> comparePlace = new Comparator<Result>() {
         @Override
         public int compare(Result r1, Result r2) {
             if(r1.getCost()==r2.getCost())
@@ -46,14 +42,14 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         }
     };
 
-    private Comparator<Result> compareName = new Comparator<Result>() {
+    private final Comparator<Result> compareName = new Comparator<Result>() {
         @Override
         public int compare(Result r1, Result r2) {
             return r1.getName().compareTo(r2.getName());
         }
     };
 
-    private Comparator<Result> compareClub = new Comparator<Result>() {
+    private final Comparator<Result> compareClub = new Comparator<Result>() {
         @Override
         public int compare(Result r1, Result r2) {
             return r1.getCompany().compareTo(r2.getCompany());
@@ -75,28 +71,19 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         place = findViewById(R.id.place_button);
         club = findViewById(R.id.club_button);
         name = findViewById(R.id.name_button);
-        place.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Collections.sort(results, comparePlace);
-                resultAdapter.notifyDataSetChanged();
-            }
+        place.setOnClickListener(view -> {
+            Collections.sort(results, comparePlace);
+            resultAdapter.notifyDataSetChanged();
         });
 
-        name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Collections.sort(results, compareName);
-                resultAdapter.notifyDataSetChanged();
-            }
+        name.setOnClickListener(view -> {
+            Collections.sort(results, compareName);
+            resultAdapter.notifyDataSetChanged();
         });
 
-        club.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Collections.sort(results, compareClub);
-                resultAdapter.notifyDataSetChanged();
-            }
+        club.setOnClickListener(view -> {
+            Collections.sort(results, compareClub);
+            resultAdapter.notifyDataSetChanged();
         });
     }
 
@@ -105,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         startActivity(intent);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onPostExecute(String json) {
         Gson gson = new Gson();
@@ -113,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         Type type = new TypeToken<ArrayList<Result>>() {}.getType();
         results = gson.fromJson(json, type);
         resultAdapter.setResults(results);
-
+        Collections.sort(results, comparePlace);
         resultAdapter.notifyDataSetChanged();
     }
 }
