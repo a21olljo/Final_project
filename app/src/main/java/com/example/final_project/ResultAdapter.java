@@ -29,8 +29,6 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ResultAdapter.ResultViewHolder holder, int position) {
-        Log.d("BinderViewer", "results.getString");
-
         holder.name.setText(results.get(position).getName());
         holder.club.setText(results.get(position).getCompany());
         holder.position.setText(Integer.toString(results.get(position).getCost()));
